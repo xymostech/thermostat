@@ -1,25 +1,13 @@
-from flask import Flask, redirect, url_for
-app = Flask(__name__)
+import web_app
+import monitor
+import signal
+import sys
 
-import gpio
+def signal_handler(sig, stack):
+    monitor.stop_monitoring()
+    sys.exit(1)
 
+signal.signal(signal.SIGINT, signal_handler)
 
-@app.route('/')
-def main():
-    return 'Hello, thermostat!'
-
-
-@app.route('/heaton')
-def heat_on():
-    gpio.heat_on()
-    return redirect(url_for('main'))
-
-
-@app.route('/heatoff')
-def heat_off():
-    gpio.heat_off()
-    return redirect(url_for('main'))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+monitor.start_monitoring()
+web_app.app.run(port=18260)
