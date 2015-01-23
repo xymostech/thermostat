@@ -10,4 +10,4 @@ def signal_handler(sig, stack):
 signal.signal(signal.SIGINT, signal_handler)
 
 monitor.start_monitoring()
-web_app.app.run(port=18260)
+web_app.app.run(port=18260, host='0.0.0.0')

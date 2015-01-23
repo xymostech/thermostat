@@ -54,7 +54,7 @@ def spi_setup(spi_pins):
 
 
 # GPIO pin corresponding to the relay
-RELAY_OUTPUT = 11
+RELAY_OUTPUT = 17
 
 
 def heat_on():
@@ -71,7 +71,7 @@ def heat_off():
 
 
 # GPIO pins corresponding to clock, mosi, miso, and ss pins
-SPI_PINS = (18, 23, 24, 25)
+SPI_PINS = (22, 23, 24, 25)
 
 # ADC input for the temperature sensor
 TEMP_SENSOR = 0
@@ -85,7 +85,7 @@ def get_temp():
 
 
 if real_gpio:
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(RELAY_OUTPUT, GPIO.OUT)
 
