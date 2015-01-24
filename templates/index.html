@@ -2,8 +2,19 @@
 <html>
     <head>
         <title>Thermostat</title>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+          $.getJSON("/api/heater_on", function(data) {
+              $("#heat-on").text(data.heat ? "on" : "off");
+          });
+
+          $.getJSON("/api/current_temp", function(data) {
+              $("#temperature").text(data.temp);
+          });
+        </script>
     </head>
     <body>
-        The heat is currently {% if heat %}on{% else %}off{% endif %}.
+        The heat is currently <span id="heat-on"></span>. <br>
+        The temperature is currently <span id="temperature"></span>&deg; C.
     </body>
 </html>

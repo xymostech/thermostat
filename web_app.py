@@ -7,11 +7,7 @@ import monitor
 
 @app.route('/')
 def main():
-    context = {
-        "heat": monitor.heat_on()
-    }
-
-    return render_template('index.html', **context)
+    return render_template('index.html')
 
 
 @app.route('/api/heater_on')
