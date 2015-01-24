@@ -19,6 +19,8 @@ schedule = [
     True, True, True, False,
 ]
 
+TEMP_THRESHOLD_LOW = 21.0
+TEMP_THRESHOLD_HIGH = 21.5
 
 class Schedule:
     def __init__(self, heat_event):
@@ -34,14 +36,16 @@ class Schedule:
 
         hour = now.hour
 
-        if not self.heat_on and schedule[hour]:
-            gpio.heat_on()
-            self.heat_on = True
-            self.heat_event.set()
-        elif self.heat_on and not schedule[hour]:
+        temp = gpio.get_temp()
+
+        if self.heat_on and (not schedule[hour] or temp > TEMP_THRESHOLD_HIGH):
             gpio.heat_off()
             self.heat_on = False
             self.heat_event.clear()
+        elif not self.heat_on and schedule[hour] and temp < TEMP_THRESHOLD_LOW:
+            gpio.heat_on()
+            self.heat_on = True
+            self.heat_event.set()
 
 
 def monitor_func(stop_event, heat_event):
