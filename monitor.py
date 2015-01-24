@@ -42,10 +42,10 @@ class Schedule(object):
 
 
 def monitor_func(stop_event, scheduler):
-    while not stop_event.is_set():
-        scheduler.run()
+    scheduler.run()
 
-        time.sleep(30)
+    while not stop_event.wait(30):
+        scheduler.run()
 
 monitor_thread = None
 stop_event = threading.Event()
@@ -67,4 +67,4 @@ def stop_monitoring():
         monitor_thread.join()
 
 def heat_on():
-    return heat_event.is_set()
+    return scheduler.heat_on
