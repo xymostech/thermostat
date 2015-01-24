@@ -79,9 +79,9 @@ TEMP_SENSOR = 1
 
 def get_temp():
     if real_gpio:
-        return readadc(TEMP_SENSOR, SPI_PINS)
+        return readadc(TEMP_SENSOR, SPI_PINS) / 10.0
     else:
-        return random.randint(18 * 2, 23 * 2) / 2.0
+        return random.randint(18 * 10, 23 * 10) / 10.0
 
 
 if real_gpio:
