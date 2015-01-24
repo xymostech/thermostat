@@ -8,7 +8,7 @@ except ImportError:
 
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
 def readadc(adc_num, spi_pins):
-    if ((adc_num > 7) or (adcnum < 0)):
+    if ((adc_num > 7) or (adc_num < 0)):
         return -1
 
     clock_pin, mosi_pin, miso_pin, ss_pin = spi_pins
@@ -48,8 +48,8 @@ def spi_setup(spi_pins):
     clock_pin, mosi_pin, miso_pin, ss_pin = spi_pins
 
     GPIO.setup(clock_pin, GPIO.OUT)
-    GPIO.setup(mosi_pin, GPIO.IN)
-    GPIO.setup(miso_pin, GPIO.OUT)
+    GPIO.setup(mosi_pin, GPIO.OUT)
+    GPIO.setup(miso_pin, GPIO.IN)
     GPIO.setup(ss_pin, GPIO.OUT)
 
 
@@ -71,10 +71,10 @@ def heat_off():
 
 
 # GPIO pins corresponding to clock, mosi, miso, and ss pins
-SPI_PINS = (22, 23, 24, 25)
+SPI_PINS = (18, 23, 24, 25)
 
 # ADC input for the temperature sensor
-TEMP_SENSOR = 0
+TEMP_SENSOR = 1
 
 
 def get_temp():
