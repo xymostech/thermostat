@@ -30,6 +30,11 @@ class TempMonitor(object):
                 "INSERT INTO temp_data VALUES (NULL, strftime('%s', 'now'), ?)",
                 (temp,))
 
+            cursor.execute("""
+                INSERT INTO heat_active_data VALUES
+                (NULL, strftime('%s', 'now'), ?)""",
+                (self.heat_on,))
+
 
 def monitor_func(stop_event, monitor):
     monitor.run()

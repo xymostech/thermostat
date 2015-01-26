@@ -1,2 +1,3 @@
 *.pyc
 *.sqlite
+curr_schema
