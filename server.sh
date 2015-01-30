@@ -17,8 +17,6 @@ if [ "$1" == "--debug" ]; then
         -t reactify \
         js/main.jsx \
         -o static/build/bundle.js &
-else
-    make static/build/bundle.js
 fi
 
 python app.py
