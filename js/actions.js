@@ -1,17 +1,20 @@
 var AppDispatcher = require("./app-dispatcher.js");
-var $ = require("jquery");
 
 var Actions = {
     requestTemp: function() {
-        $.getJSON("/api/current_temp", function(data) {
-            Actions.updateTemp(data.temp);
-        });
+        fetch("/api/current_temp")
+            .then((response) => response.json())
+            .then((data) => {
+                Actions.updateTemp(data.temp);
+            });
     },
 
     requestHeatActive: function() {
-        $.getJSON("/api/heater_on", function(data) {
-            Actions.updateHeatActive(data.heat);
-        });
+        fetch("/api/heater_on")
+            .then((response) => response.json())
+            .then((data) => {
+                Actions.updateHeatActive(data.heat);
+            });
     },
 
     updateTemp: function(temp) {

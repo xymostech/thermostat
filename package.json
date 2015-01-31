@@ -1,13 +1,17 @@
-{ "dependencies":
-  { "browserify": "^8.1.1"
-    , "flux": "^2.0.1"
-    , "jquery": "^2.1.3"
-    , "object-assign": "^2.0.0"
-    , "react": "^0.12.2"
-    , "react-art": "^0.12.1"
-    , "react-components": "^0.2.0"
-    , "reactify": "^1.0.0"
-    , "underscore": "^1.7.0"
-    , "watchify": "^2.2.1"
+{
+  "dependencies": {
+    "bluebird": "^2.9.4",
+    "flux": "^2.0.1",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.2",
+    "react-art": "^0.12.1",
+    "react-components": "^0.2.0",
+    "underscore": "^1.7.0",
+    "whatwg-fetch": "^0.7.0"
+  },
+  "devDependencies": {
+    "browserify": "^8.1.1",
+    "reactify": "^1.0.0",
+    "watchify": "^2.2.1"
   }
 }
