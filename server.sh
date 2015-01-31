@@ -14,7 +14,7 @@ trap clean_up SIGTERM SIGINT ERR
 if [ "$1" == "--debug" ]; then
     ./node_modules/.bin/watchify \
         -v \
-        -t reactify \
+        -t [ reactify --es6 ] \
         js/main.jsx \
         -o static/build/bundle.js &
 fi
