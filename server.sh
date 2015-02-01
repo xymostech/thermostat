@@ -12,11 +12,11 @@ function clean_up() {
 trap clean_up SIGTERM SIGINT ERR
 
 if [ "$1" == "--debug" ]; then
-    ./node_modules/.bin/watchify \
-        -v \
-        -t [ reactify --es6 ] \
-        js/main.jsx \
-        -o static/build/bundle.js &
+    ./node_modules/.bin/beefy \
+        js/main.jsx:bundle.js \
+        9876 \
+        -- \
+        -t [ reactify --es6 ] &
 fi
 
-python app.py
+python app.py --debug

@@ -21,7 +21,14 @@ def crossdomain(func):
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+    if app.config['DEBUG']:
+        # Serve from beefy server
+        bundle_url = 'http://localhost:9876/bundle.js'
+    else:
+        # Serve statically
+        bundle_url = '/static/build/bundle.js'
+
+    return render_template('index.html', bundle_url=bundle_url)
 
 
 @app.route('/api/heater_on')
